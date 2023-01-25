@@ -30,6 +30,12 @@ $ git clone https://github.com/[USERNAME]/[REPOSITORY_NAME].git
 [예시] $ https://github.com/kimta2hwan/ssafy-9th-buulgyeong-class3-algorithm-study.git
 ```
 
++ 이후 clone 한 폴더로 이동한다.
+
+```
+[예시] $ cd ./ssafy-9th-buulgyeong-class3-algorithm-study
+```
+
 &nbsp;
 
 ### **3. remote 설정**
