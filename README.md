@@ -79,9 +79,6 @@ $ git commit -m "(이름): (문제 번호) (문제 제목)"
 ```
 $ git push origin main
 ```
-```
-$ git push upstream main
-```
 
 &nbsp;
 
