@@ -32,61 +32,61 @@ class P11279 {
 
         return n;
     }
-}
 
-class Heap {
-    int[] heap;
-    int size;
-
-    Heap(int size) {
-        heap = new int[size + 1];
-    }
-
-    void offer(int x) {
-        heap[++size] = x;
-        int i = size << 1;
-
-        while ((i >>= 1) > 1) {
-            if (!swap(i)) {
-                break;
+    private static class Heap {
+        int[] heap;
+        int size;
+    
+        Heap(int size) {
+            heap = new int[size + 1];
+        }
+    
+        void offer(int x) {
+            heap[++size] = x;
+            int i = size << 1;
+    
+            while ((i >>= 1) > 1) {
+                if (!swap(i)) {
+                    break;
+                }
             }
         }
-    }
-
-    int poll() {
-        if (size == 0) {
-            return 0;
-        }
-
-        int x = heap[1];
-        heap[1] = heap[size--];
-        int i = 1;
-
-        while ((i <<= 1) <= size) {
-            if (i < size && heap[i + 1] > heap[i]) {
-                i++;
+    
+        int poll() {
+            if (size == 0) {
+                return 0;
             }
-
-            if (!swap(i)) {
-                break;
+    
+            int x = heap[1];
+            heap[1] = heap[size--];
+            int i = 1;
+    
+            while ((i <<= 1) <= size) {
+                if (i < size && heap[i + 1] > heap[i]) {
+                    i++;
+                }
+    
+                if (!swap(i)) {
+                    break;
+                }
             }
+    
+            return x;
         }
-
-        return x;
-    }
-
-    boolean swap(int i) {
-        int j = i >> 1;
-        int parent = heap[j];
-        int child = heap[i];
-
-        if (parent > child) {
-            return false;
+    
+        boolean swap(int i) {
+            int j = i >> 1;
+            int parent = heap[j];
+            int child = heap[i];
+    
+            if (parent > child) {
+                return false;
+            }
+    
+            heap[j] = child;
+            heap[i] = parent;
+    
+            return true;
         }
-
-        heap[j] = child;
-        heap[i] = parent;
-
-        return true;
     }
 }
