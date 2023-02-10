@@ -6,17 +6,6 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-class Node {
-    int num;
-    Node left;
-    Node right;
-
-    public Node(Node left, Node right) {
-        this.left = left;
-        this.right = right;
-    }
-}
-
 public class P9934_완전이진트리 {
     static int[] building;
     static int buildIdx = 0;
@@ -79,6 +68,17 @@ public class P9934_완전이진트리 {
 
         if (node.right != null) {
             inOrder(node.right, level + 1);
+        }
+    }
+
+    static class Node {
+        int num;
+        Node left;
+        Node right;
+
+        public Node(Node left, Node right) {
+            this.left = left;
+            this.right = right;
         }
     }
 }
