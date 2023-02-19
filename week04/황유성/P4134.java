@@ -22,7 +22,6 @@ public class P4134 {
             solve();
         }
         System.out.print(answer);
-        System.out.println(count());
     }
     static void readTestCase() throws Exception {
         n = Long.parseLong(br.readLine());
