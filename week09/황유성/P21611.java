@@ -30,6 +30,7 @@ public class P21611 {
     static int[] ry = {0, 1, 0, -1};
     static int[] rx = {-1, 0, 1, 0};
     static int[] rArr;
+    static ArrayDeque<Seq> dq = new ArrayDeque<>();
 
     public static void main(String[] args) throws Exception {
         readInput();
@@ -83,7 +84,6 @@ public class P21611 {
     }
 
     static void bomb() {
-        ArrayDeque<Seq> dq = new ArrayDeque<>();
         int y = mid;
         int x = mid;
         int d = 0;
@@ -129,55 +129,17 @@ public class P21611 {
                 dq.offerLast(new Seq(prevNum, prevCnt));
             }
         }
-
-        y = x = mid;
-        d = 0;
-        for (int r : rArr) {
-            for (int i = 0; i < r; i++) {
-                y += ry[d];
-                x += rx[d];
-                if (dq.isEmpty()) grid[y][x] = 0;
-                else {
-                    grid[y][x] = dq.peekFirst().num;
-                    if (--dq.peekFirst().cnt == 0) dq.pollFirst();
-                }
-            }
-            d = (d + 1) % 4;
-        }
     }
 
     static void change() {
         Queue<Integer> q = new ArrayDeque<>();
+        while (!dq.isEmpty()) {
+            q.offer(dq.peekFirst().cnt);
+            q.offer(dq.pollFirst().num);
+        }
         int y = mid;
         int x = mid;
-        int prevNum = 0;
-        int prevCnt = 0;
         int d = 0;
-        for (int r : rArr) {
-            for (int i = 0; i < r; i++) {
-                y += ry[d];
-                x += rx[d];
-                if (grid[y][x] == 0) continue;
-                if (grid[y][x] == prevNum) {
-                    prevCnt++;
-                } else {
-                    if (prevNum != 0) {
-                        q.offer(prevCnt);
-                        q.offer(prevNum);
-                    }
-                    prevCnt = 1;
-                    prevNum = grid[y][x];
-                }
-            }
-            d = (d + 1) % 4;
-        }
-        if (prevNum != 0) {
-            q.offer(prevCnt);
-            q.offer(prevNum);
-        }
-
-        y = x = mid;
-        d = 0;
         for (int r : rArr) {
             for (int i = 0; i < r; i++) {
                 y += ry[d];
